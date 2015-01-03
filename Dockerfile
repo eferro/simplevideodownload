@@ -11,7 +11,7 @@ RUN apt-get install -y software-properties-common
 RUN add-apt-repository ppa:jon-severinsson/ffmpeg
 RUN apt-get update
 RUN apt-get install -y ffmpeg
-# Install Python.
+# Install Python
 RUN \
   apt-get update && \
   apt-get install -y python python-dev python-pip python-virtualenv && \
@@ -19,4 +19,8 @@ RUN \
 
 RUN pip install --upgrade youtube_dl && mkdir /download
 
+ADD simplevideodownload.py /usr/bin/simplevideodownload
+RUN chmod 755 /usr/bin/simplevideodownload
 WORKDIR /download
+
+ENTRYPOINT ["simplevideodownload"]
