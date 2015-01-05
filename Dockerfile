@@ -14,7 +14,7 @@ RUN apt-get install -y ffmpeg
 # Install Python
 RUN \
   apt-get update && \
-  apt-get install -y python python-dev python-pip python-virtualenv && \
+  apt-get install -y python python-dev python-pip libpython-dev python2.7-dev python-virtualenv && \
   rm -rf /var/lib/apt/lists/*
 
 RUN pip install --upgrade youtube_dl && mkdir /download
