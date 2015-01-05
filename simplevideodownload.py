@@ -22,8 +22,9 @@ for url in sys.argv[1:]:
 	
 	subprocess.call(["ffmpeg", "-i", final_path, mp3_path])
 
+	date_str = datetime.datetime.today().strftime("%Y%m%d")
 	data = {
-		'date':datetime.datetime.now(),
+		'date':date_str,
 		'url': url,
 		'final_path': final_path,
 		'mp3_path': mp3_path,
@@ -31,6 +32,8 @@ for url in sys.argv[1:]:
 
 	shutil.move(final_path, "../")
 	shutil.move(mp3_path, "../")
+
+
 
 	os.chdir('../')
 	
