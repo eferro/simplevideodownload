@@ -30,14 +30,15 @@ for url in sys.argv[1:]:
 		'mp3_path': mp3_path,
 	}
 
-	shutil.move(final_path, "../")
-	shutil.move(mp3_path, "../")
+	dest_dir = '../' + date_str
+	if not os.path.exists(dest_dir):
+		os.makedirs(dest_dir)
 
+	shutil.move(final_path, dest_dir)
+	shutil.move(mp3_path, dest_dir)
 
-
-	os.chdir('../')
-	
-	with open(base_path + '.json', 'w') as f:
+	with open(dest_dir + '/' + base_path + '.json', 'w') as f:
 		f.write(json.dumps(data, sort_keys=True, indent=4, separators=(',', ': ')))
 	
+	os.chdir('../')
 	shutil.rmtree(tempdir, ignore_errors=True)
