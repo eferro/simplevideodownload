@@ -13,6 +13,8 @@ import argparse
 
 def main():
 	parser = argparse.ArgumentParser()
+	parser.add_argument('--uid', action='store', type=int, help='User id for the downloaded files')
+	parser.add_argument('--gid', action='store', type=int, help='Group id for the downloaded files')
 	parser.add_argument('url', action='store', nargs='*', help='Url to download')
 	args = parser.parse_args()
 	
@@ -40,13 +42,17 @@ def main():
 		dest_dir = '../' + date_str
 		if not os.path.exists(dest_dir):
 			os.makedirs(dest_dir)
+			os.chown(dest_dir, args.uid or -1, args.gid or -1)
 
 		shutil.move(final_path, dest_dir)
 		shutil.move(mp3_path, dest_dir)
-
-		with open(dest_dir + '/' + base_path + '.json', 'w') as f:
+		json_file = dest_dir + '/' + base_path + '.json'
+		with open(json_file, 'w') as f:
 			f.write(json.dumps(data, sort_keys=True, indent=4, separators=(',', ': ')))
 		
+		for file_path in [json_file, final_path, mp3_path]:
+			os.chown(dest_dir + '/' + file_path, args.uid or -1, args.gid or -1)
+
 		os.chdir('../')
 		shutil.rmtree(tempdir, ignore_errors=True)
 

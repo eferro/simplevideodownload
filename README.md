@@ -7,6 +7,5 @@ Image available at docker hub [https://registry.hub.docker.com/u/eferro/simplevi
 
 ## Use
 ```
-sudo docker run -v $(pwd):/download -i -t eferro/simplevideodownload <url>
+sudo docker run -v $(pwd):/download -i -t eferro/simplevideodownload --uid $(id -u) --gid $(id -g) <url>
 ```
-
