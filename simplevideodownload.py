@@ -39,21 +39,16 @@ def main():
 			'mp3_path': mp3_path,
 		}
 
-		dest_dir = '../' + date_str
-		if not os.path.exists(dest_dir):
-			os.makedirs(dest_dir)
-			os.chown(dest_dir, args.uid or -1, args.gid or -1)
-
-		shutil.move(final_path, dest_dir)
-		shutil.move(mp3_path, dest_dir)
-		json_file = dest_dir + '/' + base_path + '.json'
+		shutil.move(final_path, '../')
+		shutil.move(mp3_path, '../')
+		
+		os.chdir('../')
+		
+		json_file = base_path + '.json'
 		with open(json_file, 'w') as f:
 			f.write(json.dumps(data, sort_keys=True, indent=4, separators=(',', ': ')))
-		
 		for file_path in [json_file, final_path, mp3_path]:
-			os.chown(dest_dir + '/' + file_path, args.uid or -1, args.gid or -1)
-
-		os.chdir('../')
+			os.chown(file_path, args.uid or -1, args.gid or -1)
 		shutil.rmtree(tempdir, ignore_errors=True)
 
 
