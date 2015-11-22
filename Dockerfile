@@ -1,4 +1,4 @@
-FROM ubuntu:14.04
+FROM ubuntu:15.04
 
 ENV REFRESEHED_AT 2015-11-22
 
@@ -6,7 +6,7 @@ MAINTAINER Eduardo Ferro Aldama <eduardo.ferro.aldama@gmail.com>
 
 RUN apt-get update
 RUN apt-get install -y software-properties-common
-RUN add-apt-repository ppa:jon-severinsson/ffmpeg
+#RUN add-apt-repository ppa:jon-severinsson/ffmpeg
 RUN apt-get update
 RUN apt-get install -y ffmpeg rtmpdump
 # Install Python
