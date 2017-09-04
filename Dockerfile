@@ -1,6 +1,6 @@
-FROM ubuntu:15.04
+FROM ubuntu:16.04
 
-ENV REFRESEHED_AT 2017-08-15
+ENV REFRESEHED_AT 2017-06-04
 
 MAINTAINER Eduardo Ferro Aldama <eduardo.ferro.aldama@gmail.com>
 
