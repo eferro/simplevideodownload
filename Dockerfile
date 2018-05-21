@@ -11,10 +11,10 @@ RUN apt-get install -y ffmpeg rtmpdump
 # Install Python
 RUN \
   apt-get update && \
-  apt-get install -y python python-dev python-pip libpython-dev python2.7-dev python-virtualenv && \
+  apt-get install -y python3 python3-dev python3-pip libpython3-dev python3-dev python3-virtualenv && \
   rm -rf /var/lib/apt/lists/*
 
-RUN pip install --upgrade youtube_dl && mkdir /download
+RUN pip3 install --upgrade youtube_dl && mkdir /download
 
 ADD simplevideodownload.py /usr/bin/simplevideodownload
 RUN chmod 755 /usr/bin/simplevideodownload
