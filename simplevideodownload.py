@@ -24,7 +24,7 @@ def main():
 		subprocess.call(["youtube-dl", url])
 
 		initial_path = os.listdir('.')[0]
-		subprocess.call(["rename", "s/ /_/g", initial_path])
+		subprocess.call(["rename.ul", "s/ /_/g", initial_path])
 		final_path = initial_path.replace(' ', '_')
 		base_path = final_path[:final_path.rfind('.')]
 		mp3_path = base_path + '.mp3'
