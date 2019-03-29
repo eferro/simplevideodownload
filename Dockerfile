@@ -1,6 +1,6 @@
-FROM ubuntu:18.04
+FROM ubuntu:18.10
 
-ENV REFRESEHED_AT 2019-01-24
+ENV REFRESEHED_AT 2019-03-29
 
 MAINTAINER Eduardo Ferro Aldama <eduardo.ferro.aldama@gmail.com>
 
